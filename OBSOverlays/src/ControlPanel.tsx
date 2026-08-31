@@ -4,6 +4,7 @@ import {
     Button,
     Card,
     CardContent,
+    Checkbox,
     FormControl,
     InputLabel,
     MenuItem,
@@ -53,6 +54,8 @@ const TeamControls = ({ team, label, dataState, updateState }: TeamControlsProps
                 <Typography variant="h5" fontWeight={700} mb={3}>{label}</Typography>
 
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}>
+                    <Box sx={{display:"flex", flexDirection:"row"}}>
+
                     <TextField
                         label="Team name"
                         value={data.name}
@@ -60,14 +63,92 @@ const TeamControls = ({ team, label, dataState, updateState }: TeamControlsProps
                         fullWidth
                     />
 
+                    <Box mx={1}>
+                        <Typography variant="body2" ml={.5}>Team colour</Typography>
+                        <Box sx={{ display: "flex", alignItems: "center", gap: 0 }}>
+                            <input
+                                type="color"
+                                value={colour}
+                                onChange={e => setColour(e.target.value)}
+                                style={{ width: 60, height: 40, padding: 2, cursor: "pointer", background: "transparent", border: "none" }}
+                            />
+                            <Typography>{data.colour}</Typography>
+                        </Box>
+                    </Box>
+
+                    </Box>
+
                     <Box>
-                        <Typography variant="body2" mb={1}>Score</Typography>
-                        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                            <Button variant="contained" onClick={() => updateScore(-1)}>-</Button>
-                            <Typography variant="h4" fontWeight={700} sx={{ minWidth: 50, textAlign: "center" }}>
-                                {data.score}
-                            </Typography>
-                            <Button variant="contained" onClick={() => updateScore(1)}>+</Button>
+                    <Typography variant="body2" mb={1}>
+                        Team PFP
+                    </Typography>
+
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                        {data.teamLogoPath && (
+                            <Box
+                                component="img"
+                                src={data.teamPfp}
+                                sx={{
+                                    width: 60,
+                                    height: 60,
+                                    objectFit: "cover",
+                                    borderRadius: 1,
+                                }}
+                            />
+                        )}
+
+                        <Button variant="outlined" component="label">
+                            {data.teamLogoPath ? "Change PFP" : "Upload PFP"}
+                            <input
+                                type="file"
+                                hidden
+                                accept="image/png,image/jpeg,image/webp"
+                                onChange={async e => {
+                                    const file = e.target.files?.[0];
+
+                                    if (!file) return;
+
+                                    const reader = new FileReader();
+
+                                    reader.onload = () => {
+                                        update({
+                                            teamLogoPath: reader.result as string,
+                                        });
+                                    };
+
+                                    reader.readAsDataURL(file);
+                                }}
+                            />
+                        </Button>
+
+                        {data.teamLogoPath && (
+                            <Button
+                                color="error"
+                                onClick={() => update({ teamLogoPath: null })}
+                            >
+                                Remove
+                            </Button>
+                        )}
+                    </Box>
+                </Box>
+
+                    <Box sx={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
+                        <Box sx={{border:1, borderColor:"darkgrey", p:1, borderRadius:1, minWidth:"30%"}}>
+                            <Typography variant="body2" mb={1}>Score</Typography>
+                            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                                <Button variant="contained" onClick={() => updateScore(-1)}>-</Button>
+                                <Typography variant="h4" fontWeight={700} sx={{ minWidth: 50, textAlign: "center" }}>
+                                    {data.score}
+                                </Typography>
+                                <Button variant="contained" onClick={() => updateScore(1)}>+</Button>
+                            </Box>
+                        </Box>
+
+                        <Box sx={{border:1, borderColor:"darkgrey", p:1, borderRadius:1, minWidth:"30%", justifyItems:"center"}}>
+                            <Typography variant="body2" mb={1}>Listen In?</Typography>
+                            <Box sx={{ display: "flex", justifyItems:"center", gap: 2 }}>
+                                <Checkbox value={data.listenIn} onChange={e => update({ listenIn: e.target.checked })}/>
+                            </Box>
                         </Box>
                     </Box>
 
@@ -79,18 +160,7 @@ const TeamControls = ({ team, label, dataState, updateState }: TeamControlsProps
                         </Select>
                     </FormControl>
 
-                    <Box>
-                        <Typography variant="body2" mb={1}>Team colour</Typography>
-                        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                            <input
-                                type="color"
-                                value={colour}
-                                onChange={e => setColour(e.target.value)}
-                                style={{ width: 60, height: 40, padding: 2, cursor: "pointer", background: "transparent", border: "none" }}
-                            />
-                            <Typography>{data.colour}</Typography>
-                        </Box>
-                    </Box>
+
                 </Box>
             </CardContent>
         </Card>

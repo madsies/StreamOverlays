@@ -8,7 +8,8 @@ const defaultState: BroadcastState = {
         score: 0,
         teamLogoPath: "",
         ban: "cassidy",
-        colour: "#652ede"
+        colour: "#652ede",
+        listenIn: false,
     },
 
     away: {
@@ -17,7 +18,8 @@ const defaultState: BroadcastState = {
         score: 0,
         teamLogoPath: "",
         ban: "ana",
-        colour: "#51d73a"
+        colour: "#51d73a",
+        listenIn: false,
     },
     type: "Bo7",
     maps: [0, 1, 2],

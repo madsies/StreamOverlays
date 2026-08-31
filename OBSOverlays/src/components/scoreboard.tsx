@@ -9,6 +9,7 @@ export type TeamState = {
     teamLogoPath: string;
     ban: string | null;
     colour: string;
+    listenIn: boolean;
 };
 
 export type BroadcastState = {
@@ -141,11 +142,17 @@ function Scoreboard() {
                 />
 
                 <Box sx={{background: dataState.home.colour,height: WIDTH,display:"flex",  justifyContent: "space-between", borderRadius:1.5, alignItems:"center" }}>
+                    <Box sx={{display:"flex", alignItems: "center"}}>
 
-                            
-                    <Typography fontSize={42} textAlign={"center"} fontWeight={800} color="white" m={2}>
-                        {dataState.home.name}
-                    </Typography>
+                        {dataState.home.teamLogoPath && (<Box sx={{width: WIDTH, height: WIDTH, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                            <Box component={"img"} src={dataState.home.teamLogoPath} 
+                            sx={{objectFit: "contain", width: WIDTH-20,height: WIDTH-20, m:"10px"}}>
+                            </Box>
+                        </Box> )}                               
+                        <Typography fontSize={42} textAlign={"center"} fontWeight={800} color="white" mx={1}>
+                            {dataState.home.name}
+                        </Typography>
+                    </Box>
 
                     <Box sx={{display:"flex", height:WIDTH, width:WIDTH*2}}>
                         <Box
@@ -209,9 +216,18 @@ function Scoreboard() {
                                 </Typography>
                         </Box>
                     </Box>
-                    <Typography fontSize={42} textAlign={"center"} fontWeight={800} color="white" m={2}>
-                        {dataState.away.name}
-                    </Typography>
+                    <Box sx={{display:"flex", alignItems: "center"}}>
+                        <Typography fontSize={42} textAlign={"center"} fontWeight={800} color="white" mx={1}>
+                            {dataState.away.name}
+                        </Typography>
+
+                        {dataState.away.teamLogoPath && (<Box sx={{width: WIDTH, height: WIDTH, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                            <Box component={"img"} src={dataState.away.teamLogoPath} 
+                            sx={{objectFit: "contain", width: WIDTH-20,height: WIDTH-20, m:"10px"}}>
+                            </Box>
+                        </Box>  )}                              
+
+                    </Box>
                 </Box>
                 </Box>
 
