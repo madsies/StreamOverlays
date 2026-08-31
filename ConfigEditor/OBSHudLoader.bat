@@ -4,7 +4,7 @@ cd /d "%~dp0"
 setlocal
 
 echo ================================
-echo      madsies' Broadcast Tool
+echo      madsies' OBS HUD Loader
 echo ================================
 echo.
 
@@ -30,16 +30,13 @@ if %ERRORLEVEL% NEQ 0 (
     pause
     exit /b 0
 )
-
 echo Node.js found:
 node --version
 echo.
-
-echo Starting Broadcast Tool..
+echo Loading Config...
 echo.
 
-start "" http://localhost:4815/
 
-node server.ts
+node OBSHudLoader.js
 
 pause

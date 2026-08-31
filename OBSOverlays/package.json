@@ -15,7 +15,8 @@
     "@mui/material": "^7.3.2",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "react-router-dom": "^7.18.3"
+    "react-router-dom": "^7.18.3",
+    "tasklist": "^6.0.0"
   },
   "devDependencies": {
     "@types/node": "^24.13.3",

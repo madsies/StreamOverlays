@@ -42,7 +42,7 @@ export const idataState: BroadcastState = {
         seed: 1,
         score: 0,
         teamLogoPath: "",
-        ban: "cassidy",
+        ban: "Cassidy",
         colour: "#652ede"
     },
 
@@ -51,7 +51,7 @@ export const idataState: BroadcastState = {
         seed: 2,
         score: 0,
         teamLogoPath: "",
-        ban: "ana",
+        ban: "Ana",
         colour: "#51d73a"
     },
 

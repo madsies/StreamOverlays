@@ -40,6 +40,6 @@ echo.
 
 start "" http://localhost:4815/
 
-node server.ts
+node ./server/server.ts
 
 pause

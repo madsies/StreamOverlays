@@ -34,7 +34,7 @@ function MapTabs({
             sx={{
                 display: "flex",gap: "4px",
                 width: "90%",px:"5%",
-                height: 18,mb:1,
+                height: 16,mb:1,
             }}
         >
             {Array.from({ length: mapsToWin }).map((_, i) => (
@@ -118,8 +118,8 @@ function Scoreboard() {
 
     const { dataState } = useBroadcastState();
 
-    const TEAM_SIZE = 650;
-    const WIDTH = 85;
+    const TEAM_SIZE = 600;
+    const WIDTH = 75;
 
     const bestOf = parseInt(
         dataState.type.replace("Bo", ""),
@@ -132,7 +132,7 @@ function Scoreboard() {
         <Box
             sx={{width: "100vw",height: "100vh",boxSizing: "border-box",display: "flex",justifyContent: "space-between", px: 4,}}
         >
-            <Box sx={{width: TEAM_SIZE, mt:4}}>
+            <Box sx={{width: TEAM_SIZE, mt:3}}>
                 <MapTabs
                     score={dataState.home.score}
                     colour={dataState.home.colour}
@@ -147,7 +147,7 @@ function Scoreboard() {
                         {dataState.home.name}
                     </Typography>
 
-                    <Box sx={{display:"flex", height:WIDTH, width:170}}>
+                    <Box sx={{display:"flex", height:WIDTH, width:WIDTH*2}}>
                         <Box
                             sx={{
                                 position: "relative",width: WIDTH,height: WIDTH,display: "flex",
@@ -178,7 +178,7 @@ function Scoreboard() {
                 
             </Box>
 
-            <Box sx={{width: TEAM_SIZE, mt:4}}>
+            <Box sx={{width: TEAM_SIZE, mt:3}}>
                 <MapTabs
                         score={dataState.away.score}
                         colour={dataState.away.colour}
@@ -186,7 +186,7 @@ function Scoreboard() {
                         home={false}
                     />
                 <Box sx={{background: dataState.away.colour, height: WIDTH,display:"flex", justifyContent: "space-between", borderRadius:1.5, alignItems:"center"}}>
-                    <Box sx={{display:"flex", height:WIDTH, width:170}}>
+                    <Box sx={{display:"flex", height:WIDTH, width:WIDTH*2}}>
                         <Box sx={{ background: "#1b1b1b",width: WIDTH,height: WIDTH, borderTopLeftRadius:1.5, borderBottomLeftRadius: 1.5}}>
                             <Typography fontSize={52} textAlign={"center"} fontWeight={800} color="white">
                                 {dataState.away.score}
