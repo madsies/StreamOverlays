@@ -16,6 +16,10 @@ const distPath = path.join(process.cwd(), "dist");
 
 app.use(express.static(distPath));
 
+app.get("/{*splat}", (req, res) => {
+    res.sendFile(path.join(distPath, "index.html"));
+});
+
 export type TeamState = {
     name: string;
     seed: number;
