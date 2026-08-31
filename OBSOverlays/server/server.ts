@@ -22,6 +22,7 @@ export type TeamState = {
     score: number;
     teamLogoPath: string;
     ban: string | null;
+    colour: string;
 };
 
 export type BroadcastState = {
@@ -38,6 +39,7 @@ export const idataState: BroadcastState = {
         score: 0,
         teamLogoPath: "",
         ban: "cassidy",
+        colour: "#652ede"
     },
 
     away: {
@@ -46,9 +48,10 @@ export const idataState: BroadcastState = {
         score: 0,
         teamLogoPath: "",
         ban: "ana",
+        colour: "#51d73a"
     },
 
-    type: "Bo5",
+    type: "Bo7",
 
     maps: [0, 1, 2],
 };
@@ -97,9 +100,7 @@ wss.on("connection", socket => {
 });
 
 webServer.listen(PORT, "127.0.0.1", () => {
-
     console.log(
         `USS Broadcast running at http://localhost:${PORT}`
     );
-
 });

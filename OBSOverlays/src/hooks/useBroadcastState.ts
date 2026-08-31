@@ -8,15 +8,18 @@ const defaultState: BroadcastState = {
         score: 0,
         teamLogoPath: "",
         ban: "cassidy",
+        colour: "#652ede"
     },
+
     away: {
         name: "Away Team",
         seed: 2,
         score: 0,
         teamLogoPath: "",
         ban: "ana",
+        colour: "#51d73a"
     },
-    type: "Bo5",
+    type: "Bo7",
     maps: [0, 1, 2],
 };
 
