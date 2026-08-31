@@ -49,19 +49,19 @@ async function manageOverwatchConfig() {
         
         fs.writeFileSync(OW_SETTINGS_PATH, updatedContent, 'utf8');
         console.log('Applied custom HUD settings (duplicates prevented).');
-        console.log('Waiting for Overwatch 2 to start and close... Do not close this window.');
+        console.log('Waiting for Overwatch to start and close... Do not close this window.');
 
         let gameWasRunning = false;
         while (true) {
             const isOpen = isProcessRunning('Overwatch.exe');
 
             if (isOpen && !gameWasRunning) {
-                console.log('Overwatch 2 detected running!');
+                console.log('Overwatch detected running!');
                 gameWasRunning = true;
             }
 
             if (!isOpen && gameWasRunning) {
-                console.log('Overwatch 2 closure detected.');
+                console.log('Overwatch closure detected.');
                 break;
             }
 

@@ -30,11 +30,19 @@ export type TeamState = {
     listenIn: boolean;
 };
 
+type MapResult = {
+    map: number;
+    winner: "home" | "away";
+    homeBan: string | null;
+    awayBan: string | null;
+};
+
 export type BroadcastState = {
     home: TeamState;
     away: TeamState;
     type: string;
-    maps: (number | null)[];
+    title: string;
+    maps: MapResult[];
 };
 
 export const idataState: BroadcastState = {
@@ -58,9 +66,10 @@ export const idataState: BroadcastState = {
         listenIn: false
     },
 
+    title: "Broadcast Title",
     type: "Bo7",
 
-    maps: [0, 1, 2],
+    maps: [],
 };
 
 

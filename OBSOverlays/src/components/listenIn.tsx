@@ -7,11 +7,13 @@ function ListenIn() {
     const homeActive = dataState.home.listenIn;
     const awayActive = dataState.away.listenIn;
 
+    const OFFSET = 240;
+
     return (
         <>
             <Box
                 sx={{
-                    position: "fixed", top: 200,
+                    position: "fixed", top: OFFSET,
                     left: 0,width: 260,height: 80,
                     background: dataState.home.colour,
                     transform: homeActive ? "translateX(-2%)" : "translateX(-100%)",
@@ -33,7 +35,7 @@ function ListenIn() {
             <Box
                 sx={{
                     position: "fixed",
-                    top: 200,
+                    top: OFFSET,
                     right: 0,
                     width: 260,
                     height: 80,

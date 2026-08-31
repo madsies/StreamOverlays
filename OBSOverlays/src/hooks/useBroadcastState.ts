@@ -21,8 +21,9 @@ const defaultState: BroadcastState = {
         colour: "#51d73a",
         listenIn: false,
     },
+    title: "Tournament",
     type: "Bo7",
-    maps: [0, 1, 2],
+    maps: [],
 };
 
 export function useBroadcastState() {

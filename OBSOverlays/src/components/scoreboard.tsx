@@ -12,11 +12,19 @@ export type TeamState = {
     listenIn: boolean;
 };
 
+export type MapResult = {
+    map: number;
+    winner: "home" | "away" | null;
+    homeBan: string | null;
+    awayBan: string | null;
+};
+
 export type BroadcastState = {
     home: TeamState;
     away: TeamState;
     type: string;
-    maps: (number | null)[];
+    title: string;
+    maps: (MapResult | null)[];
 };
 
 function MapTabs({
@@ -141,7 +149,8 @@ function Scoreboard() {
                     home={true}
                 />
 
-                <Box sx={{background: dataState.home.colour,height: WIDTH,display:"flex",  justifyContent: "space-between", borderRadius:1.5, alignItems:"center" }}>
+                <Box sx={{background: `linear-gradient(135deg, ${dataState.home.colour} 0%, color-mix(in srgb, ${dataState.home.colour} 75%, white) 100%)`,
+                height: WIDTH,display:"flex",  justifyContent: "space-between", borderRadius:1.5, alignItems:"center" }}>
                     <Box sx={{display:"flex", alignItems: "center"}}>
 
                         {dataState.home.teamLogoPath && (<Box sx={{width: WIDTH, height: WIDTH, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -164,10 +173,10 @@ function Scoreboard() {
                             <HeroImage hero={dataState.home.ban}/>
                             
 
-                            <Typography
+                            {dataState.home.ban != null && dataState.home.ban && <Typography
                                 sx={{position: "absolute",top: "85%",left: "50%",transform: "translate(-50%, -50%)",color: "#f1f1f1",fontWeight: "bold",fontSize: 22, textShadow:"2px 2px 4px black"}}>
                                 BAN
-                            </Typography>
+                            </Typography>}
                         </Box>
                         <Box sx={{ background: "#1b1b1b", width: WIDTH,height: WIDTH, borderTopRightRadius:1.5, borderBottomRightRadius: 1.5}}>
                             <Typography fontSize={52} textAlign={"center"} fontWeight={800}  color="white">
@@ -178,11 +187,19 @@ function Scoreboard() {
                 </Box>
             </Box>
 
-            <Box sx={{background:"#2f2f2f", width:"100px", height:"25px", border:"1px black", borderBottomRightRadius:5, borderBottomLeftRadius:5}}>
-                <Typography textAlign={"center"} fontWeight={600} color="white">
-                    {dataState.type}
-                </Typography>
-                
+            <Box sx={{display:"flex", flexDirection:"column", alignItems: "center", position: "relative"}}>
+                <Box sx={{background:"#2f2f2f", width:"fit-content", minWidth:"150px", px:1.25, height:"28px", border:"1px black", borderBottomRightRadius:5, borderBottomLeftRadius:5, position:"relative", zIndex:1}}>
+                    <Typography textAlign={"center"} fontWeight={600} color="white">
+                        {dataState.title}
+                    </Typography>
+                </Box>
+
+                <Box sx={{background:"#4d4d4d", width:"100px", height:"24px", border:"1px black", borderBottomRightRadius:5, borderBottomLeftRadius:5,position: "relative",zIndex: 0}}>
+                    <Typography textAlign={"center"} fontWeight={600} color="white">
+                        {dataState.type}
+                    </Typography>
+                    
+                </Box>
             </Box>
 
             <Box sx={{width: TEAM_SIZE, mt:3}}>
@@ -192,7 +209,8 @@ function Scoreboard() {
                         mapsToWin={mapsToWin}
                         home={false}
                     />
-                <Box sx={{background: dataState.away.colour, height: WIDTH,display:"flex", justifyContent: "space-between", borderRadius:1.5, alignItems:"center"}}>
+                <Box sx={{background: `linear-gradient(225deg, ${dataState.away.colour} 0%, color-mix(in srgb, ${dataState.away.colour} 75%, white) 100%)`,
+                 height: WIDTH,display:"flex", justifyContent: "space-between", borderRadius:1.5, alignItems:"center"}}>
                     <Box sx={{display:"flex", height:WIDTH, width:WIDTH*2}}>
                         <Box sx={{ background: "#1b1b1b",width: WIDTH,height: WIDTH, borderTopLeftRadius:1.5, borderBottomLeftRadius: 1.5}}>
                             <Typography fontSize={52} textAlign={"center"} fontWeight={800} color="white">
@@ -207,13 +225,12 @@ function Scoreboard() {
                         >
 
                                 <HeroImage hero={dataState.away.ban}/>
-
-                                <Typography
+                                {dataState.away.ban != null && dataState.away.ban && <Typography
                                     sx={{position: "absolute",top: "85%",left: "50%",
                                         transform: "translate(-50%, -50%)",
                                         color: "#f1f1f1",fontWeight: "bold",fontSize: 22, textShadow:"2px 2px 4px black"}}>
                                     BAN
-                                </Typography>
+                                </Typography>}
                         </Box>
                     </Box>
                     <Box sx={{display:"flex", alignItems: "center"}}>
